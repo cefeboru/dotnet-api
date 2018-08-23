@@ -13,11 +13,17 @@ using Microsoft.Extensions.Options;
 using TodoApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
+using BeatPulse;
 
 namespace DotNetApi
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+  
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -27,6 +33,9 @@ namespace DotNetApi
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version="v1"});
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddBeatPulse(setup => {
+              setup.AddSqlServer(Configuration.GetConnectionString("DB"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

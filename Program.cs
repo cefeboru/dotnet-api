@@ -19,6 +19,13 @@ namespace DotNetApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                 .UseBeatPulse(options =>
+                 {
+                   options.ConfigurePath(path: "health") //default hc
+                         .ConfigureTimeout(milliseconds: 1500) // default -1 infinitely
+                         .ConfigureDetailedOutput(detailedOutput: true); //default false
+                 })
                 .UseStartup<Startup>();
-    }
+
+  }
 }

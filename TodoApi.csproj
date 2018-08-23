@@ -12,6 +12,19 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="3.0.0" />
+    <PackageReference Include="BeatPulse" Version="2.1.0" />
+    <PackageReference Include="BeatPulse.SqlServer" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\StatusController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.configuration">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.12.0\lib\mono\4.5-api\System.configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="unit-testing\bin\Debug\netcoreapp2.1\unit-testing.dll" />
+  </ItemGroup>
 </Project>
